@@ -1,0 +1,10 @@
+﻿INSERT INTO companies(name) VALUES ('The Perfumer''s Apprentice');
+INSERT INTO companies(name) VALUES ('Capella');
+INSERT INTO companies(name) VALUES ('Flavorah');
+INSERT INTO companies(name) VALUES ('Inawera');
+INSERT INTO companies(name) VALUES ('FlavourArt');
+INSERT INTO companies(name) VALUES ('Liquid Barn');
+INSERT INTO companies(name) VALUES ('Flavor West');
+INSERT INTO companies(name) VALUES ('Hangsen');
+INSERT INTO companies(name) VALUES ('Lauren''s');
+INSERT INTO companies(name) VALUES ('Vape Train Australia');

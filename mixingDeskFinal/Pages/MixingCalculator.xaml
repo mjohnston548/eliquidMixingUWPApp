@@ -1,0 +1,250 @@
+﻿<Page
+    x:Class="mixingDeskFinal.Pages.MixingCalculator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:mixingDeskFinal.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Margin="12,0,12,12" >
+        <!--Page title-->
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" FontSize="24">Mixing Calculator</TextBlock>
+        <!--Rest of page-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Rectangle  Fill="SteelBlue"  Grid.Column="1"/>
+            <Rectangle Fill="Salmon" Grid.Column="0"/>
+
+            <!--Input section-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="645*"/>
+                    <RowDefinition Height="48*"/>
+                    <RowDefinition Height="37*"/>
+                    <RowDefinition Height="243*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock>Nicotine base concentration(in PG)</TextBlock>
+                    <TextBox PlaceholderText="mg/ml" Grid.Column="1" x:Name="nicotineBaseConcInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBlock Grid.Row="1">Desired Nicotine concentration</TextBlock>
+                    <TextBox PlaceholderText="mg/ml" Grid.Row="1" Grid.Column="1" x:Name="desiredNicotineConcInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBlock Grid.Row="2">Volume Required</TextBlock>
+                    <TextBox PlaceholderText="ml" Grid.Row="2" Grid.Column="1" x:Name="volumeRequiredInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBlock Grid.Row="3" FontWeight="Bold" VerticalAlignment="Bottom" Margin="0,0,0,5">Flavouring Name</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Bottom" Margin="0,0,0,5">Percentage</TextBlock>
+                    
+                    <TextBox PlaceholderText="Flavouring 1" Grid.Row="4" x:Name="flavouring1NameInput"></TextBox>
+                    <TextBox PlaceholderText="%" Grid.Row="4" Grid.Column="1" x:Name="flavouring1PercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBox PlaceholderText="Flavouring 2" Grid.Row="5" x:Name="flavouring2NameInput"></TextBox>
+                    <TextBox PlaceholderText="%" Grid.Row="5" Grid.Column="1" x:Name="flavouring2PercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBox PlaceholderText="Flavouring 3" Grid.Row="6" x:Name="flavouring3NameInput"></TextBox>
+                    <TextBox PlaceholderText="%" Grid.Row="6" Grid.Column="1" x:Name="flavouring3PercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBox PlaceholderText="Flavouring 4" Grid.Row="7" x:Name="flavouring4NameInput"></TextBox>
+                    <TextBox PlaceholderText="%" Grid.Row="7" Grid.Column="1" x:Name="flavouring4PercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBox PlaceholderText="Flavouring 5" Grid.Row="8" x:Name="flavouring5NameInput"></TextBox>
+                    <TextBox PlaceholderText="%" Grid.Row="8" Grid.Column="1" x:Name="flavouring5PercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBox PlaceholderText="Flavouring 6" Grid.Row="9" x:Name="flavouring6NameInput"></TextBox>
+                    <TextBox PlaceholderText="%" Grid.Row="9" Grid.Column="1" x:Name="flavouring6PercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+
+                    <TextBox PlaceholderText="Flavouring 7" Grid.Row="10" x:Name="flavouring7NameInput"></TextBox>
+                    <TextBox PlaceholderText="%" Grid.Row="10" Grid.Column="1" x:Name="flavouring7PercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock>Desired PG/VG ratio</TextBlock>
+                    <!--Bind these two textboxes together-->
+                    <TextBox PlaceholderText="PG %" Grid.Column="1" x:Name="desiredPGPercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+                    <TextBox PlaceholderText="VG %" Grid.Column="2" x:Name="desiredVGPercentageInput" extensions:TextBoxRegex.ValidationType="Decimal"
+                             extensions:TextBoxRegex.ValidationMode="Dynamic"></TextBox>
+                </Grid>
+                <TextBlock Grid.Row="2">Notes</TextBlock>
+                <TextBox PlaceholderText="Notes" Grid.Row="3" x:Name="userNotesInput"></TextBox>
+
+
+            </Grid>
+            <!--Output section-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="713*"/>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="191*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="213*"/>
+                        <ColumnDefinition Width="156*"/>
+                        <ColumnDefinition Width="185*"/>
+                        <ColumnDefinition Width="184*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+                    <TextBlock FontWeight="Bold" Margin="10,0,10,0">Ingredient</TextBlock>
+                    <TextBlock FontWeight="Bold" Margin="10,0,10,0" Grid.Column="1">Volume(ml)</TextBlock>
+                    <TextBlock FontWeight="Bold" Margin="10,0,10,0" Grid.Column="2">Weight(g)</TextBlock>
+                    <TextBlock FontWeight="Bold" Margin="10,0,10,0" Grid.Column="3">Percentage of Total</TextBlock>
+
+                    <!--Data output from calculation. -->
+                    <TextBlock Grid.Row="1">Nicotine base</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="30,0,30,0" x:Name="nicotineBaseVolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Margin="30,0,30,0" x:Name="nicotineBaseGramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Margin="30,0,30,0" x:Name="nicotineBasePercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="2">PG</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="30,0,30,0" x:Name="pgBaseVolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Margin="30,0,30,0" x:Name="pgGramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="3" Margin="30,0,30,0" x:Name="pgPercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="3">VG</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="30,0,30,0" x:Name="vgVolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Margin="30,0,30,0" x:Name="vgGramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="3" Margin="30,0,30,0" x:Name="vgPercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="4" x:Name="flavouring1NameOutput">Flavouring 1</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Margin="30,0,30,0" x:Name="flavouring1VolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Margin="30,0,30,0" x:Name="flavouring1GramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="3" Margin="30,0,30,0" x:Name="flavouring1PercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="5" x:Name="flavouring2NameOutput">Flavouring 2</TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="30,0,30,0" x:Name="flavouring2VolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="2" Margin="30,0,30,0" x:Name="flavouring2GramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="3" Margin="30,0,30,0" x:Name="flavouring2PercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="6" x:Name="flavouring3NameOutput">Flavouring 3</TextBlock>
+                    <TextBlock Grid.Row="6" Grid.Column="1" Margin="30,0,30,0" x:Name="flavouring3VolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="6" Grid.Column="2" Margin="30,0,30,0" x:Name="flavouring3GramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="6" Grid.Column="3" Margin="30,0,30,0" x:Name="flavouring3PercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="7" x:Name="flavouring4NameOutput">Flavouring 4</TextBlock>
+                    <TextBlock Grid.Row="7" Grid.Column="1" Margin="30,0,30,0" x:Name="flavouring4VolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="7" Grid.Column="2" Margin="30,0,30,0" x:Name="flavouring4GramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="7" Grid.Column="3" Margin="30,0,30,0" x:Name="flavouring4PercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="8" x:Name="flavouring5NameOutput">Flavouring 5</TextBlock>
+                    <TextBlock Grid.Row="8" Grid.Column="1" Margin="30,0,30,0" x:Name="flavouring5VolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="8" Grid.Column="2" Margin="30,0,30,0" x:Name="flavouring5GramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="8" Grid.Column="3" Margin="30,0,30,0" x:Name="flavouring5PercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="9" x:Name="flavouring6NameOutput">Flavouring 6</TextBlock>
+                    <TextBlock Grid.Row="9" Grid.Column="1" Margin="30,0,30,0" x:Name="flavouring6VolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="9" Grid.Column="2" Margin="30,0,30,0" x:Name="flavouring6GramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="9" Grid.Column="3" Margin="30,0,30,0" x:Name="flavouring6PercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="10" x:Name="flavouring7NameOutput">Flavouring 7</TextBlock>
+                    <TextBlock Grid.Row="10" Grid.Column="1" Margin="30,0,30,0" x:Name="flavouring7VolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="10" Grid.Column="2" Margin="30,0,30,0" x:Name="flavouring7GramsOutput">0</TextBlock>
+                    <TextBlock Grid.Row="10" Grid.Column="3" Margin="30,0,30,0" x:Name="flavouring7PercentageOutput">0</TextBlock>
+
+                    <TextBlock Grid.Row="11">Totals</TextBlock>
+                    <TextBlock Grid.Row="11" Grid.Column="1" Margin="30,0,30,0" x:Name="totalVolumeOutput">0</TextBlock>
+                    <TextBlock Grid.Row="11" Grid.Column="2" Margin="30,0,30,0" x:Name="totalGramsOutput" >0g</TextBlock>
+                    <TextBlock Grid.Row="11" Grid.Column="3" Margin="30,0,30,0" x:Name="totalPercentageOutput">0%</TextBlock>
+
+                    <TextBlock Grid.Row="12" >Total flavour percentage</TextBlock>
+                    <TextBlock Grid.Row="12" Grid.Column="3" Margin="30,0,30,0" x:Name="totalFlavourPercentageOutput">0%</TextBlock>
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="1" Grid.Column="0" x:Name="calculateButton" Click="CalculateButton_Click" HorizontalAlignment="Center" Height="32" Width="77">Calculate</Button>
+                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="Save or Load Recipe">
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Save Recipe" Click="SaveRecipeClickAsync"/>
+                                <MenuFlyoutItem Text="Load Recipe" Click="LoadRecipeClick"/>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
+                
+                <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  x:Name="userErrorInfo" TextWrapping="Wrap">Error/warning text goes here</TextBlock>
+
+
+            </Grid>
+
+
+        </Grid>
+
+
+
+
+
+
+
+
+
+
+
+    </Grid>
+</Page>

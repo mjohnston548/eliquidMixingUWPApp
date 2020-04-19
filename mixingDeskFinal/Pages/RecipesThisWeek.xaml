@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="mixingDeskFinal.Pages.RecipesThisWeek"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:mixingDeskFinal.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:data="using:mixingDeskFinal.VapeClasses"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="12,0,12,0">
+            <TextBlock TextAlignment="Center" FontSize="20">Recipes this Week</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextAlignment="Center">Popular this week</TextBlock>
+                <Button x:Name="thisMonthButton" Click="thisMonthButton_Click" >This month</Button>
+            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="19"/>
+                    <RowDefinition Height="Auto" MinHeight="300"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontWeight="Bold" Text="Name"/>
+                    <TextBlock Grid.Column="1" FontWeight="Bold" Text="Creator Name"/>
+                    <TextBlock Grid.Column="2" FontWeight="Bold" Text="Date" x:Name="dateText" Tapped="dateText_Tapped" PointerEntered="dateText_PointerEntered" PointerExited="dateText_PointerExited"/>
+                    <TextBlock Grid.Column="3" FontWeight="Bold" Text="Rating" x:Name="ratingText" Tapped="ratingText_Tapped" PointerEntered="ratingText_PointerEntered" PointerExited="ratingText_PointerExited"/>
+                </Grid>
+                <ListView SelectionChanged="recipesThisWeekList_SelectionChanged" Grid.Row="1" BorderBrush="White" BorderThickness="2" x:Name="recipesThisWeekList" ItemsSource="{x:Bind Recipes}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Recipe">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" x:Name="recipeName" Text="{x:Bind Name}"/>
+                                <TextBlock Grid.Column="1" x:Name="creatorName" Text="{x:Bind CreatorName}"/>
+                                <TextBlock Grid.Column="2" x:Name="dateOfCreation" Text="{x:Bind DateOfCreation}"/>
+                                <TextBlock Grid.Column="3" x:Name="rating" Text="{x:Bind Rating}"/>
+                            </Grid>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                    <!--The listview.itemcontainer style makes the grid template in the listview expand to fill the entire width of the listview-->
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    
+                    
+
+                </ListView>
+                
+                
+            </Grid>
+
+        </StackPanel>
+
+
+    </Grid>
+</Page>

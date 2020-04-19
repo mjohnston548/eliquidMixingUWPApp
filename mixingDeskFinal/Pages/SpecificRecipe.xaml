@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="mixingDeskFinal.Pages.SpecificRecipe"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:mixingDeskFinal.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:data="using:mixingDeskFinal.VapeClasses"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid >
+        <StackPanel Orientation="Vertical" Margin="12,0,12,0">
+            <!--Tied to database name-->
+            <TextBlock TextAlignment="Center" x:Name="recipeNameText" FontSize="26"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <!--Tied to database name-->
+                <TextBlock x:Name="creatorNameText" Margin="10,0,10,0"/>
+                <!--Tied to database name-->
+                <TextBlock x:Name="dateOfCreationText" Margin="10,0,10,0"/>
+            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="300"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontWeight="Bold">Flavouring</TextBlock>
+                    <TextBlock Grid.Column="1" FontWeight="Bold">Percentage</TextBlock>
+                </Grid>
+                <ListView Grid.Row="1" BorderBrush="White" BorderThickness="2" x:Name="specificRecipeIngredientsList" ItemsSource="{x:Bind Ingredients}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Ingredient">
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--datatemplate here-->
+                                <TextBlock Grid.Column="0" Text="{x:Bind FlavouringName}"/> 
+                                <TextBlock Grid.Column="1" Text="{x:Bind UsagePercentage}"/>
+                            </Grid>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                
+
+            </Grid>
+            
+            <Button x:Name="mixRecipeButton" Click="mixRecipeButton_Click">Mix This Recipe</Button>
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="16">Notes</TextBlock>
+
+            <!--Tied to database value-->
+            <TextBlock HorizontalAlignment="Center" x:Name="notesContentText" TextWrapping="Wrap"/>
+            
+        </StackPanel>
+       
+
+
+    </Grid>
+</Page>
