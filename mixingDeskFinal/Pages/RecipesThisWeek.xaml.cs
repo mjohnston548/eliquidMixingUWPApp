@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,7 +28,22 @@ namespace mixingDeskFinal.Pages
             Frame.Navigate(typeof(Pages.RecipesThisMonth));
         }
 
-        
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //if you came here after clicking the share button add the passed object to the Recipes list, if not do the normal thing.
+            if (e.Parameter==null)
+            {
+                //load the page like normal
+            }
+            else
+            {
+                base.OnNavigatedTo(e);
+                Recipe sharedRecipe = (Recipe)e.Parameter;
+                Recipes.Add(sharedRecipe);
+            }
+        }
+
+
         private void recipesThisWeekList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Recipe selectedRecipe = (Recipe)recipesThisWeekList.SelectedItem;

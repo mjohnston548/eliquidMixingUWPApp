@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 namespace mixingDeskFinal.VapeClasses
 {
     /// <summary>
-    /// Represents a Mix. That is, a custom user created Recipe. Most calculates and 
+    /// Represents a Mix. That is, a custom user created Recipe. Mostly calculates and 
     /// verifies that the user's recipe makes sense.
     /// </summary>
     public class Mix: Recipe

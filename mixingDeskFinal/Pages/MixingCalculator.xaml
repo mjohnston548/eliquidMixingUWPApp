@@ -216,6 +216,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="1" Grid.Column="0" x:Name="calculateButton" Click="CalculateButton_Click" HorizontalAlignment="Center" Height="32" Width="77">Calculate</Button>
                     <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="Save or Load Recipe">
@@ -226,6 +227,8 @@
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>
+                    <Button Grid.Row="1" Grid.Column="2" x:Name="shareButton" Click="shareButton_Click" HorizontalAlignment="Center" Content="Share Your Recipe"></Button>
+
                 </Grid>
                 
                 <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  x:Name="userErrorInfo" TextWrapping="Wrap">Error/warning text goes here</TextBlock>

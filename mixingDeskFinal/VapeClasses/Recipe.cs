@@ -25,6 +25,14 @@ namespace mixingDeskFinal.VapeClasses
 
         public Recipe() { }
 
+        public Recipe( DateTime DateOfCreation, List<Ingredient> Ingredients, string Name = "Untitled", string CreatorName="Unknown")
+        {
+            this.Name = Name;
+            this.CreatorName = CreatorName;
+            this.DateOfCreation = DateOfCreation;
+            this.Ingredients = Ingredients;
+        }
+
         
     }
 }
