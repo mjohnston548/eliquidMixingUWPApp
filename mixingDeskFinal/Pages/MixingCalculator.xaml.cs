@@ -22,6 +22,7 @@ namespace mixingDeskFinal.Pages
         public MixingCalculator()
         {
             this.InitializeComponent();
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -159,8 +160,14 @@ namespace mixingDeskFinal.Pages
             
 
         }
-
-        private List<Ingredient> PopulateMixIngredientsList(Mix mixObj, TextBox[] flavouringPercentagesInput,TextBox[] flavouringNamesInput)
+        /// <summary>
+        /// Returns a list of Ingredient from user input in the given textboxes.
+        /// </summary>
+        /// <param name="mixObj"></param>
+        /// <param name="flavouringPercentagesInput"></param>
+        /// <param name="flavouringNamesInput"></param>
+        /// <returns></returns>
+        private List<Ingredient> PopulateMixIngredientsList( TextBox[] flavouringPercentagesInput,TextBox[] flavouringNamesInput)
         {
             List<Ingredient> tempIngredients = new List<Ingredient>();
             int i = 0;
@@ -184,7 +191,7 @@ namespace mixingDeskFinal.Pages
         private Mix MakeMixObjectFromInput(TextBox[] flavouringNames, TextBox[] flavouringPercentages )
         {
             Mix tempMix = new Mix();
-            tempMix.Ingredients = PopulateMixIngredientsList(tempMix, flavouringPercentages, flavouringNames);
+            tempMix.Ingredients = PopulateMixIngredientsList( flavouringPercentages, flavouringNames);
             return tempMix;
         }
 
@@ -249,6 +256,70 @@ namespace mixingDeskFinal.Pages
                 k += 1;
             }
 
+        }
+
+        private void shareButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Adding a recipe to the recipesThisWeek page
+            //Check if flavouringPercentage input boxes are empty
+            TextBox[] flavouringPercentageInputs = getFlavouringPercentageInputTextBoxes();
+            Boolean hasFlavouring = false;
+            foreach (TextBox flavouringInput in flavouringPercentageInputs)
+            {
+                if (!(String.IsNullOrEmpty(flavouringInput.Text)))
+                {
+                    hasFlavouring = true;
+                }
+            }
+            if (hasFlavouring==false)
+            {
+                userErrorInfo.Text = "You must have at least one flavouring with a corresponding percentage to share it.";
+            }
+            else
+            {
+                //Should check if the recipe flavour percentages make sense
+                //Could just make the user Calculate their recipe first since that has lots of similar checks
+                double percentageCount = 0;
+                for (int i = 0; i < flavouringPercentageInputs.Length; i++)
+                {
+                    if (!(String.IsNullOrWhiteSpace(flavouringPercentageInputs[i].Text)))
+                    {
+                        percentageCount += Convert.ToDouble(flavouringPercentageInputs[i].Text);
+                    }
+                    
+                }
+                if (percentageCount>=100) //should use a proper double comparison
+                {
+                    userErrorInfo.Text = "Your total flavour percentage cannot be more than 100%";
+                }
+                else
+                {
+                    //Make a recipe object
+                    List<Ingredient> ingredientsForSharing = PopulateMixIngredientsList(getFlavouringPercentageInputTextBoxes(), getFlavouringNameInputTextBoxes());
+                    Recipe tempRecipe = new Recipe(DateTime.Now, ingredientsForSharing);
+
+                    //Move to RecipesThisWeek and pass recipe object
+                    Frame.Navigate(typeof(Pages.RecipesThisWeek), tempRecipe);
+                }
+                
+            }
+
+
+
+            
+        }
+
+        private TextBox[] getFlavouringNameInputTextBoxes()
+        {
+            TextBox[] flavouringNamesInput = { flavouring1NameInput, flavouring2NameInput, flavouring3NameInput, flavouring4NameInput, flavouring5NameInput, flavouring6NameInput, flavouring7NameInput };
+            return flavouringNamesInput;
+        }
+
+        private TextBox[] getFlavouringPercentageInputTextBoxes()
+        {
+            TextBox[] percentageInputs = {flavouring1PercentageInput,flavouring2PercentageInput,flavouring3PercentageInput,flavouring4PercentageInput,flavouring5PercentageInput,flavouring6PercentageInput
+                    ,flavouring7PercentageInput};
+            return percentageInputs;
         }
     }
 }

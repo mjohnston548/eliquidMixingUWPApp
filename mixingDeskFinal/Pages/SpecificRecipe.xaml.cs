@@ -32,7 +32,12 @@ namespace mixingDeskFinal.Pages
             creatorNameText.Text = specificRecipe.CreatorName;
             dateOfCreationText.Text = Convert.ToString(specificRecipe.DateOfCreation);
             recipeNameText.Text = specificRecipe.Name;
-            notesContentText.Text = specificRecipe.Notes;
+            if (specificRecipe.Notes!=null)
+            {
+                notesContentText.Text = specificRecipe.Notes;
+            }
+            
+            
         }
 
         private void mixRecipeButton_Click(object sender, RoutedEventArgs e)
