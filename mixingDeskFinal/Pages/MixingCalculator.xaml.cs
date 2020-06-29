@@ -44,7 +44,6 @@ namespace mixingDeskFinal.Pages
                 if (ingredientsList !=null)
                 {
                     
-                    
                     TextBox[] flavouringNamesInputs = { flavouring1NameInput, flavouring2NameInput, flavouring3NameInput, flavouring4NameInput, flavouring5NameInput, flavouring6NameInput, flavouring7NameInput };
                     TextBox[] percentageInputs = {flavouring1PercentageInput,flavouring2PercentageInput,flavouring3PercentageInput,flavouring4PercentageInput,flavouring5PercentageInput,flavouring6PercentageInput
                     ,flavouring7PercentageInput};
@@ -86,9 +85,10 @@ namespace mixingDeskFinal.Pages
                     //make sure pg vg ratio adds up to 100 put this in if statement
                     Mix.PGVGValidator(desiredPGPercentageInput, desiredVGPercentageInput);
 
-                    
-                    TextBox[] flavouringNamesInput = { flavouring1NameInput, flavouring2NameInput, flavouring3NameInput, flavouring4NameInput, flavouring5NameInput, flavouring6NameInput, flavouring7NameInput };
-                    TextBlock[] flavouringNamesOutput = { flavouring1NameOutput, flavouring2NameOutput, flavouring3NameOutput, flavouring4NameOutput, flavouring5NameOutput, flavouring6NameOutput, flavouring7NameOutput };
+                    TextBox[] flavouringNamesInput = GetFlavouringNameInputTextBoxes();
+
+
+                    TextBlock[] flavouringNamesOutput = GetFlavouringNamesOutput();
                     int i = 0;
                     foreach (TextBox flavouringName in flavouringNamesInput)
                     {
@@ -104,23 +104,20 @@ namespace mixingDeskFinal.Pages
                         }
                     }
 
-                    
+
                     tempMix.NicotineWeightCalculator(nicotineBaseConcInput);
+
+                    TextBox[] flavouringPercentagesInput = GetFlavouringPercentageInputTextBoxes();
                     
-                    TextBox[] flavouringPercentagesInput = {flavouring1PercentageInput,flavouring2PercentageInput,flavouring3PercentageInput,flavouring4PercentageInput,flavouring5PercentageInput
-                    ,flavouring6PercentageInput,flavouring7PercentageInput};
                     tempMix.CalculateMixInVolume(desiredNicotineConcInput, volumeRequiredInput, nicotineBaseConcInput, desiredVGPercentageInput, desiredPGPercentageInput, flavouringPercentagesInput);
 
-                    TextBlock[] flavouringVolumeOutput = {flavouring1VolumeOutput,flavouring2VolumeOutput,flavouring3VolumeOutput,flavouring4VolumeOutput,flavouring5VolumeOutput,flavouring6VolumeOutput
-                    ,flavouring7VolumeOutput};
+                    TextBlock[] flavouringVolumeOutput = GetFlavouringVolumeOutput();
                     tempMix.DisplayMixResultsVolume(nicotineBaseVolumeOutput, pgBaseVolumeOutput, vgVolumeOutput, flavouringVolumeOutput);
 
-                    TextBlock[] flavouringWeightOutput = {flavouring1GramsOutput,flavouring2GramsOutput,flavouring3GramsOutput,flavouring4GramsOutput,flavouring5GramsOutput,flavouring6GramsOutput
-                    ,flavouring7GramsOutput};
+                    TextBlock[] flavouringWeightOutput = GetFlavouringWeightOutput();
                     tempMix.DisplayMixResultsWeight(nicotineBaseGramsOutput, pgGramsOutput, vgGramsOutput, flavouringWeightOutput);
 
-                    TextBlock[] flavouringPercentageOutput = {flavouring1PercentageOutput,flavouring2PercentageOutput,flavouring3PercentageOutput,flavouring4PercentageOutput,flavouring5PercentageOutput
-                    ,flavouring6PercentageOutput,flavouring7PercentageOutput};
+                    TextBlock[] flavouringPercentageOutput = GetFlavouringPercentageOutput();
 
                     tempMix.DisplayMixResultsPercentage(nicotineBasePercentageOutput, vgPercentageOutput, pgPercentageOutput, flavouringPercentagesInput, flavouringPercentageOutput);
 
@@ -146,10 +143,10 @@ namespace mixingDeskFinal.Pages
 
                     tempMix.DisplayTotals(volumeOutputList, weightOutputList, percentageOutputList, flavouringPercentagesInput, totalVolumeOutput, totalGramsOutput, totalPercentageOutput, totalFlavourPercentageOutput);
 
-                    
+
                     mixMadeSuccesfully = true;
 
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -160,10 +157,33 @@ namespace mixingDeskFinal.Pages
             
 
         }
+
+        private TextBlock[] GetFlavouringPercentageOutput()
+        {
+            return new TextBlock[]{flavouring1PercentageOutput,flavouring2PercentageOutput,flavouring3PercentageOutput,flavouring4PercentageOutput,flavouring5PercentageOutput
+                    ,flavouring6PercentageOutput,flavouring7PercentageOutput};
+        }
+
+        private TextBlock[] GetFlavouringWeightOutput()
+        {
+            return new TextBlock[]{flavouring1GramsOutput,flavouring2GramsOutput,flavouring3GramsOutput,flavouring4GramsOutput,flavouring5GramsOutput,flavouring6GramsOutput
+                    ,flavouring7GramsOutput};
+        }
+
+        private TextBlock[] GetFlavouringVolumeOutput()
+        {
+            return new TextBlock[]{flavouring1VolumeOutput,flavouring2VolumeOutput,flavouring3VolumeOutput,flavouring4VolumeOutput,flavouring5VolumeOutput,flavouring6VolumeOutput
+                    ,flavouring7VolumeOutput};
+        }
+
+        private TextBlock[] GetFlavouringNamesOutput()
+        {
+            return new TextBlock[] { flavouring1NameOutput, flavouring2NameOutput, flavouring3NameOutput, flavouring4NameOutput, flavouring5NameOutput, flavouring6NameOutput, flavouring7NameOutput };
+        }
+
         /// <summary>
         /// Returns a list of Ingredient from user input in the given textboxes.
         /// </summary>
-        /// <param name="mixObj"></param>
         /// <param name="flavouringPercentagesInput"></param>
         /// <param name="flavouringNamesInput"></param>
         /// <returns></returns>
@@ -200,12 +220,10 @@ namespace mixingDeskFinal.Pages
             if (mixMadeSuccesfully)
             {
                 //Making a list of ingredients since we havent made a mix object
-                TextBox[] flavouringNamesInput = { flavouring1NameInput, flavouring2NameInput, 
-                    flavouring3NameInput, flavouring4NameInput, flavouring5NameInput, flavouring6NameInput, 
-                    flavouring7NameInput };
-                TextBox[] flavouringPercentagesInput = {flavouring1PercentageInput,flavouring2PercentageInput,
-                    flavouring3PercentageInput,flavouring4PercentageInput, flavouring5PercentageInput,
-                    flavouring6PercentageInput,flavouring7PercentageInput};
+                TextBox[] flavouringNamesInput = GetFlavouringNameInputTextBoxes();
+                
+                TextBox[] flavouringPercentagesInput = GetFlavouringPercentageInputTextBoxes();
+                
                 
                 Mix tempMix = MakeMixObjectFromInput(flavouringNamesInput, flavouringPercentagesInput);
                 
@@ -234,11 +252,10 @@ namespace mixingDeskFinal.Pages
             //find out how many lines are in the list
             int numberOfFlavouringUsageEntries= mixInfoList.Count();
 
-            TextBox[] flavouringNamesInput = { flavouring1NameInput, flavouring2NameInput, flavouring3NameInput, 
-                flavouring4NameInput, flavouring5NameInput, flavouring6NameInput, flavouring7NameInput };
-            TextBox[] flavouringPercentagesInput = {flavouring1PercentageInput,flavouring2PercentageInput,
-                flavouring3PercentageInput,flavouring4PercentageInput,flavouring5PercentageInput
-                    ,flavouring6PercentageInput,flavouring7PercentageInput};
+            TextBox[] flavouringNamesInput = GetFlavouringNameInputTextBoxes();
+
+            TextBox[] flavouringPercentagesInput = GetFlavouringPercentageInputTextBoxes();
+            
             
             //Filling in the name text boxes
             int j = 0;
@@ -262,7 +279,7 @@ namespace mixingDeskFinal.Pages
         {
             //Adding a recipe to the recipesThisWeek page
             //Check if flavouringPercentage input boxes are empty
-            TextBox[] flavouringPercentageInputs = getFlavouringPercentageInputTextBoxes();
+            TextBox[] flavouringPercentageInputs = GetFlavouringPercentageInputTextBoxes();
             Boolean hasFlavouring = false;
             foreach (TextBox flavouringInput in flavouringPercentageInputs)
             {
@@ -295,7 +312,7 @@ namespace mixingDeskFinal.Pages
                 else
                 {
                     //Make a recipe object
-                    List<Ingredient> ingredientsForSharing = PopulateMixIngredientsList(getFlavouringPercentageInputTextBoxes(), getFlavouringNameInputTextBoxes());
+                    List<Ingredient> ingredientsForSharing = PopulateMixIngredientsList(GetFlavouringPercentageInputTextBoxes(), GetFlavouringNameInputTextBoxes());
                     Recipe tempRecipe = new Recipe(DateTime.Now, ingredientsForSharing);
 
                     //Move to RecipesThisWeek and pass recipe object
@@ -309,13 +326,13 @@ namespace mixingDeskFinal.Pages
             
         }
 
-        private TextBox[] getFlavouringNameInputTextBoxes()
+        private TextBox[] GetFlavouringNameInputTextBoxes()
         {
             TextBox[] flavouringNamesInput = { flavouring1NameInput, flavouring2NameInput, flavouring3NameInput, flavouring4NameInput, flavouring5NameInput, flavouring6NameInput, flavouring7NameInput };
             return flavouringNamesInput;
         }
 
-        private TextBox[] getFlavouringPercentageInputTextBoxes()
+        private TextBox[] GetFlavouringPercentageInputTextBoxes()
         {
             TextBox[] percentageInputs = {flavouring1PercentageInput,flavouring2PercentageInput,flavouring3PercentageInput,flavouring4PercentageInput,flavouring5PercentageInput,flavouring6PercentageInput
                     ,flavouring7PercentageInput};
