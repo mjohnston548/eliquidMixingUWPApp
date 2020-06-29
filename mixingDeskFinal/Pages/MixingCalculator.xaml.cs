@@ -44,7 +44,6 @@ namespace mixingDeskFinal.Pages
                 if (ingredientsList !=null)
                 {
                     
-                    
                     TextBox[] flavouringNamesInputs = { flavouring1NameInput, flavouring2NameInput, flavouring3NameInput, flavouring4NameInput, flavouring5NameInput, flavouring6NameInput, flavouring7NameInput };
                     TextBox[] percentageInputs = {flavouring1PercentageInput,flavouring2PercentageInput,flavouring3PercentageInput,flavouring4PercentageInput,flavouring5PercentageInput,flavouring6PercentageInput
                     ,flavouring7PercentageInput};
@@ -109,8 +108,7 @@ namespace mixingDeskFinal.Pages
                     tempMix.NicotineWeightCalculator(nicotineBaseConcInput);
 
                     TextBox[] flavouringPercentagesInput = GetFlavouringPercentageInputTextBoxes();
-                    //TextBox[] flavouringPercentagesInput = {flavouring1PercentageInput,flavouring2PercentageInput,flavouring3PercentageInput,flavouring4PercentageInput,flavouring5PercentageInput
-                    //,flavouring6PercentageInput,flavouring7PercentageInput};
+                    
                     tempMix.CalculateMixInVolume(desiredNicotineConcInput, volumeRequiredInput, nicotineBaseConcInput, desiredVGPercentageInput, desiredPGPercentageInput, flavouringPercentagesInput);
 
                     TextBlock[] flavouringVolumeOutput = GetFlavouringVolumeOutput();
